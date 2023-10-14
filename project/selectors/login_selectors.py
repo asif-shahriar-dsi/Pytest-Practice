@@ -1,0 +1,1 @@
+btnLogin = "Log in"

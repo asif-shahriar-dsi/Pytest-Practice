@@ -1,0 +1,35 @@
+[
+   {
+      "name": "Sam",
+      "id": 559,
+      "token": ""
+   },
+   {
+      "name": "Dom",
+      "id": 560,
+      "token": "",
+      "car": {
+         "Name": "Bugatti",
+         "Price": "2M"
+      }
+   },
+   {
+      "name": "Bob The Builder",
+      "id": 561,
+      "token": "",
+      "fan of": [
+         {
+            "club name": "Barcelona",
+            "plays in": "La Liga"
+         },
+         {
+            "club name": "Manchester United",
+            "plays in": "English Premiere League"
+         },
+         {
+            "club name": "Inter Milan",
+            "plays in": "Fast X"
+         }
+      ]
+   }
+]
