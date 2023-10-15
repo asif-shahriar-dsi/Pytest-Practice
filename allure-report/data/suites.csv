@@ -1,5 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Wed Oct 11 14:02:47 BDT 2023","Wed Oct 11 14:02:55 BDT 2023","7430","project.runner","Test_Run2","","","","test_login_from_json",""
-"passed","Wed Oct 11 14:01:47 BDT 2023","Wed Oct 11 14:01:56 BDT 2023","9045","project.runner","Test_Run1","","","","test_registration",""
-"broken","Wed Oct 11 14:02:02 BDT 2023","Wed Oct 11 14:02:22 BDT 2023","20028","project.runner","Test_Run2","","","","test_login",""
-"broken","Wed Oct 11 14:02:30 BDT 2023","Wed Oct 11 14:02:42 BDT 2023","11989","project.runner","Test_Run2","","","","test_loginWithInvalidPassword",""

@@ -1,5 +1,5 @@
 .pytest_cache
-allure-report
-allure-results
+Practice/allure-report
+Practice/allure-results
 __pycache__
 .idea
