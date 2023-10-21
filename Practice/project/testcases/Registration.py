@@ -4,6 +4,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from faker import Faker
 from Practice.project.environment.configure import Setup
+from Practice.project.utilities import JsonFactories
 
 
 class Registration:
@@ -57,7 +58,6 @@ class Registration:
         # assert message == "Your registration completed"
 
         assert 'Your registration completed' in driver.page_source
-        JsonFactories.writeJson("C:\\Users\\Asif\\Desktop\\Practice\\Python\\Pytest 2\\project\\Json_files\\registration.json", "email_address", self.login_email)
-        JsonFactories.writeJson("C:\\Users\\Asif\\Desktop\\Practice\\Python\\Pytest 2\\project\\Json_files\\registration.json", "passwrd", self.login_password)
+        JsonFactories.writeJson("C:\\Users\\Asif\\Desktop\\Practice\\Python\\Pytest 2\\Practice\\project\\Json_files\\registration.json", "email_address", self.login_email)
+        JsonFactories.writeJson("C:\\Users\\Asif\\Desktop\\Practice\\Python\\Pytest 2\\Practice\\project\\Json_files\\registration.json", "passwrd", self.login_password)
 
-        driver.close()

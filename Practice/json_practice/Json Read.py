@@ -1,6 +1,6 @@
 import json
 
-directory = "C:\\Users\\Asif\\Desktop\\Practice\\Python\\Pytest 2\\json_practice\\User.json"
+directory = "C:\\Users\\Asif\\Desktop\\Practice\\Python\\Pytest 2\\Practice\\json_practice\\User.json"
 
 # File = open("C:\\Users\\Asif\\Desktop\\Practice\\Python\\Pytest 2\\json_practice\\User.json", 'r')
 # readJson = json.loads(File.read())
@@ -13,7 +13,6 @@ for i in readJson:
     if i['id'] == 560:
         i['name'] = input("Enter name: ")
         print(i['car']['Price'])
-    print(i)
 print(readJson[1]['car']['Name'])
 
 # Working with third object
@@ -29,5 +28,5 @@ for i in readJson:
 
 print(readJson)
 
-out_file = open("/Practice/json_practice/User.json", 'w')
+out_file = open(directory, 'w')
 json.dump(readJson, out_file, indent=3)

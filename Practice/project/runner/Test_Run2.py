@@ -3,16 +3,17 @@ import pytest
 from Practice.project.testcases.Login import Login
 import Test_Run1 as registration
 import Practice.project.environment.configure as setupEnvironment
+from Practice.project.utilities import JsonFactories
 
 driver = None
-registration_directory = "C:\\Users\\Asif\\Desktop\\Practice\\Python\\Pytest 2\\project\\Json_files\\registration.json"
+registration_directory = "C:\\Users\\Asif\\Desktop\\Practice\\Python\\Pytest 2\\Practice\\project\\Json_files\\registration.json"
 
 
 @pytest.fixture(scope="function", autouse=True)
 def test_setup():
     global driver
     setup = setupEnvironment.Setup()
-    driver = setup.setup()
+    driver = setup.setup("Edge")
 
 
 def test_login():

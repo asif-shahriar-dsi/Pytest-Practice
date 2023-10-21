@@ -6,25 +6,24 @@ import pytest
 
 LOGIN_EMAIL = None
 LOGIN_PASSWORD = None
-driver = webdriver
+driver = None
 
 
 @pytest.fixture(scope="function", autouse=True)
 def test_setup():
     global driver
     setup = setupEnvironment.Setup()
-    driver = setup.setup()
+    driver = setup.setup("Edge")
 
 
 @pytest.mark.run(order=1)
 def test_registration():
-    global LOGIN_EMAIL, LOGIN_PASSWORD,driver
+    global LOGIN_EMAIL, LOGIN_PASSWORD, driver
     driver.get("https://demo.nopcommerce.com")
     registration = Registration()
     registration.registration(driver)
     LOGIN_EMAIL = registration.login_email
     LOGIN_PASSWORD = registration.login_password
-
 
 # @pytest.mark.run(order=2)
 # def test_login():

@@ -1,0 +1,28 @@
+[
+  {
+    "id": 500,
+    "name": "Mushfiq"
+  },
+  {
+    "id": 501,
+    "name": "Rachel",
+    "car": {
+      "car_name": "Bugatti",
+      "price": "2.5 M"
+    }
+  },
+  {
+    "id": 502,
+    "name": "Ross",
+    "fan_of": [
+      {
+        "club_name": "Barcelona",
+        "plays_in": "La Liga"
+      },
+      {
+        "club_name": "Man City",
+        "plays_in": "Serie A"
+      }
+    ]
+  }
+]

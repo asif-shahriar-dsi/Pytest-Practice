@@ -1,5 +1,6 @@
 import time
 
+from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
@@ -25,7 +26,6 @@ class Login:
         logOutBtn = driver.find_element(By.LINK_TEXT, "Log out").is_displayed()
         if logOutBtn:
             print("Log in successful")
-            driver.close()
 
 
 
@@ -41,4 +41,3 @@ class Login:
         time.sleep(1)
 
         assert 'Login was unsuccessful' in driver.page_source
-        driver.close()
