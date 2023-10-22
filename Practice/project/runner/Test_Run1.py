@@ -1,4 +1,4 @@
-from selenium import webdriver
+# from selenium import webdriver
 
 from Practice.project.testcases.Registration import Registration
 import Practice.project.environment.configure as setupEnvironment
@@ -6,7 +6,7 @@ import pytest
 
 LOGIN_EMAIL = None
 LOGIN_PASSWORD = None
-driver = None
+# driver = None
 
 
 @pytest.fixture(scope="function", autouse=True)
@@ -14,13 +14,13 @@ def test_setup():
     global driver
     setup = setupEnvironment.Setup()
     driver = setup.setup("Edge")
-    yield
+    yield driver
     driver.close()
 
 
 @pytest.mark.run(order=1)
 def test_registration():
-    global LOGIN_EMAIL, LOGIN_PASSWORD, driver
+    global LOGIN_EMAIL, LOGIN_PASSWORD
     driver.get("https://demo.nopcommerce.com")
     registration = Registration()
     registration.registration(driver)

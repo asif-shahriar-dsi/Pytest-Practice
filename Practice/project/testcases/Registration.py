@@ -1,3 +1,4 @@
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
@@ -10,13 +11,15 @@ from Practice.project.utilities import JsonFactories
 class Registration:
     login_email = None
     login_password = None
+    registration_json_directory = "C:\\Users\\Asif\\Desktop\\Practice\\Python\\Pytest " \
+                                  "2\\Practice\\project\\Json_files\\registration.json "
 
     def __init__(self):
         self.fake = Faker()
-        self.setup = Setup()
 
     def registration(self, driver):
         wait = WebDriverWait(driver, 15)
+        actions = ActionChains(driver)
         assert "nopCommerce demo store" == driver.title
 
         btnRegister = wait.until(ec.element_to_be_clickable((By.LINK_TEXT, "Register")))
@@ -34,8 +37,8 @@ class Registration:
         selectYear.select_by_value("1945")
 
         email = wait.until(ec.element_to_be_clickable((By.NAME, "Email")))
-        self.login_email = self.fake.email()
-        email.send_keys(self.login_email)
+        Registration.login_email = self.fake.email()
+        email.send_keys(Registration.login_email)
 
         newsLetter = driver.find_element(By.NAME, "Newsletter")
         if newsLetter.is_selected():
@@ -43,21 +46,17 @@ class Registration:
 
         inputPass = driver.find_element(By.NAME, "Password")
         confirmPass = driver.find_element(By.NAME, "ConfirmPassword")
-        driver.execute_script("arguments[0].scrollIntoView();", inputPass)
-        self.login_password = self.fake.password(10)
+        actions.scroll_to_element(inputPass)
+        Registration.login_password = self.fake.password(10)
 
-        inputPass.send_keys(self.login_password)
-        confirmPass.send_keys(self.login_password)
+        inputPass.send_keys(Registration.login_password)
+        confirmPass.send_keys(Registration.login_password)
 
         submit = wait.until(ec.element_to_be_clickable((By.XPATH,
                                                         "//button[@id='register-button']")))
         submit.click()
 
-        # successMessage = wait.until(ec.visibility_of_element_located((By.CLASS_NAME, "result")))
-        # message = successMessage.text
-        # assert message == "Your registration completed"
-
         assert 'Your registration completed' in driver.page_source
-        JsonFactories.writeJson("C:\\Users\\Asif\\Desktop\\Practice\\Python\\Pytest 2\\Practice\\project\\Json_files\\registration.json", "email_address", self.login_email)
-        JsonFactories.writeJson("C:\\Users\\Asif\\Desktop\\Practice\\Python\\Pytest 2\\Practice\\project\\Json_files\\registration.json", "passwrd", self.login_password)
+        JsonFactories.writeJson(Registration.registration_json_directory, "email_address", Registration.login_email)
+        JsonFactories.writeJson(Registration.registration_json_directory, "passwrd", Registration.login_password)
 
