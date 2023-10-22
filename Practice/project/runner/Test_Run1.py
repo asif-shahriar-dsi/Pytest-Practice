@@ -9,7 +9,7 @@ LOGIN_PASSWORD = None
 # driver = None
 
 
-@pytest.fixture(scope="function", autouse=True)
+@pytest.fixture(scope="function", autouse=True, name="Initializing driver & teardown methods")
 def test_setup():
     global driver
     setup = setupEnvironment.Setup()

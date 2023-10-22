@@ -9,7 +9,7 @@ driver = None
 registration_directory = "C:\\Users\\Asif\\Desktop\\Practice\\Python\\Pytest 2\\Practice\\project\\Json_files\\registration.json"
 
 
-@pytest.fixture(scope="function", autouse=True)
+@pytest.fixture(scope="function", autouse=True, name="Initializing driver & teardown methods")
 def test_setup():
     global driver
     setup = setupEnvironment.Setup()
