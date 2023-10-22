@@ -14,6 +14,8 @@ def test_setup():
     global driver
     setup = setupEnvironment.Setup()
     driver = setup.setup("Edge")
+    yield
+    driver.close()
 
 
 @pytest.mark.run(order=1)
