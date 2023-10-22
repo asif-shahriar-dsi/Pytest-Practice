@@ -5,7 +5,9 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
@@ -13,6 +15,8 @@ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 driver.get("https://testautomationpractice.blogspot.com/")
 driver.maximize_window()
 driver.implicitly_wait(30)
+wait = WebDriverWait(30)
+wait.until(expected_conditions.element_to_be_clickable())
 
 name = driver.find_element(By.ID,"name")
 

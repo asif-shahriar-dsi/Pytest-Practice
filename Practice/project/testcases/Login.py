@@ -26,6 +26,8 @@ class Login:
         logOutBtn = driver.find_element(By.LINK_TEXT, "Log out").is_displayed()
         if logOutBtn:
             print("Log in successful")
+        else:
+            print("Log out button is not displayed")
 
 
 

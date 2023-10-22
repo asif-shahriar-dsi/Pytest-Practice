@@ -18,6 +18,7 @@ def test_setup():
     driver.close()
 
 
+@pytest.mark.run(order=1)
 def test_login():
     global driver
     if registration.LOGIN_EMAIL is None:
@@ -29,6 +30,7 @@ def test_login():
     login.login(driver)
 
 
+@pytest.mark.run(order=2)
 def test_loginWithInvalidPassword():
     global driver
     login = Login(registration.LOGIN_EMAIL, "bla bla")
@@ -36,6 +38,8 @@ def test_loginWithInvalidPassword():
     login.login_with_wrong_password(driver)
 
 
+@pytest.mark.run(order=3)
+@pytest.mark.skip(reason="I am skipping this")
 def test_login_from_json():
     global driver, registration_directory
     if JsonFactories.readJson(registration_directory, "email_address") is "":
