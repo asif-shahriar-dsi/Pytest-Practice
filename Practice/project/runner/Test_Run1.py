@@ -6,7 +6,6 @@ import pytest
 
 LOGIN_EMAIL = None
 LOGIN_PASSWORD = None
-# driver = None
 
 
 @pytest.fixture(scope="function", autouse=True, name="Initializing driver & teardown methods")
@@ -15,10 +14,13 @@ def test_setup():
     setup = setupEnvironment.Setup()
     driver = setup.setup("Edge")
     yield driver
+    print("Closing the browser")
     driver.close()
 
 
 @pytest.mark.run(order=1)
+@pytest.mark.smoke
+@pytest.mark.regression
 def test_registration():
     global LOGIN_EMAIL, LOGIN_PASSWORD
     driver.get("https://demo.nopcommerce.com")
@@ -27,12 +29,3 @@ def test_registration():
     LOGIN_EMAIL = registration.login_email
     LOGIN_PASSWORD = registration.login_password
 
-# @pytest.mark.run(order=2)
-# def test_login():
-#     login = Login(LOGIN_EMAIL, LOGIN_PASSWORD)
-#     login.login()
-
-#
-# testrun = Run(Setup.firstMethod)
-# testrun.test_registration()
-# testrun.test_login()

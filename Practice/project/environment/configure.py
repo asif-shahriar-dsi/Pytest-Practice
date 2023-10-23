@@ -25,7 +25,7 @@ class Setup:
 
         elif 'edge' in browser_name:
             edge_ops = EdgeOptions()
-            edge_ops.add_argument("--headless")
+            edge_ops.add_argument("headed")
             edge_ops.add_argument('window-size=1920x1080')
             edge_ops.add_experimental_option("detach", True)
             driver = self.driver.Edge(service=Service(EdgeChromiumDriverManager().install()), options=edge_ops)
