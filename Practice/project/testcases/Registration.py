@@ -4,15 +4,14 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from faker import Faker
-from Practice.project.environment.configure import Setup
 from Practice.project.utilities import JsonFactories
+import Practice.project.selectors.registration_selectors as registration_selector
 
 
 class Registration:
     login_email = None
     login_password = None
-    registration_json_directory = "C:\\Users\\Asif\\Desktop\\Practice\\Python\\Pytest " \
-                                  "2\\Practice\\project\\Json_files\\registration.json "
+    registration_json_directory = "C:\\Users\\Asif\\Desktop\\Practice\\Python\\Pytest 2\\Practice\\project\\Json_files\\registration.json "
 
     def __init__(self):
         self.fake = Faker()
@@ -22,38 +21,37 @@ class Registration:
         actions = ActionChains(driver)
         assert "nopCommerce demo store" == driver.title
 
-        btnRegister = wait.until(ec.element_to_be_clickable((By.LINK_TEXT, "Register")))
+        btnRegister = wait.until(ec.element_to_be_clickable((By.LINK_TEXT, registration_selector.btnRegister)))
         btnRegister.click()
-        btnGender = wait.until(ec.element_to_be_clickable((By.ID, "gender-male")))
+        btnGender = wait.until(ec.element_to_be_clickable((By.ID, registration_selector.btnGender)))
         btnGender.click()
-        driver.find_element(By.ID, "FirstName").send_keys(self.fake.first_name())
-        driver.find_element(By.ID, "LastName").send_keys(self.fake.last_name())
+        driver.find_element(By.ID, registration_selector.first_name).send_keys(self.fake.first_name())
+        driver.find_element(By.ID, registration_selector.last_name).send_keys(self.fake.last_name())
 
-        selectDay = Select(driver.find_element(By.NAME, "DateOfBirthDay"))
+        selectDay = Select(driver.find_element(By.NAME, registration_selector.selectDay))
         selectDay.select_by_visible_text("2")
-        selectMonth = Select(driver.find_element(By.NAME, "DateOfBirthMonth"))
+        selectMonth = Select(driver.find_element(By.NAME, registration_selector.selectMonth))
         selectMonth.select_by_index(9)
-        selectYear = Select(driver.find_element(By.NAME, "DateOfBirthYear"))
+        selectYear = Select(driver.find_element(By.NAME, registration_selector.selectYear))
         selectYear.select_by_value("1945")
 
-        email = wait.until(ec.element_to_be_clickable((By.NAME, "Email")))
+        email = wait.until(ec.element_to_be_clickable((By.NAME, registration_selector.email)))
         Registration.login_email = self.fake.email()
         email.send_keys(Registration.login_email)
 
-        newsLetter = driver.find_element(By.NAME, "Newsletter")
+        newsLetter = driver.find_element(By.NAME, registration_selector.newsLetter)
         if newsLetter.is_selected():
             newsLetter.click()
 
-        inputPass = driver.find_element(By.NAME, "Password")
-        confirmPass = driver.find_element(By.NAME, "ConfirmPassword")
+        inputPass = driver.find_element(By.NAME, registration_selector.inputPass)
+        confirmPass = driver.find_element(By.NAME, registration_selector.confirmPass)
         actions.scroll_to_element(inputPass)
         Registration.login_password = self.fake.password(10)
 
         inputPass.send_keys(Registration.login_password)
         confirmPass.send_keys(Registration.login_password)
 
-        submit = wait.until(ec.element_to_be_clickable((By.XPATH,
-                                                        "//button[@id='register-button']")))
+        submit = wait.until(ec.element_to_be_clickable((By.XPATH, registration_selector.submit)))
         submit.click()
 
         assert 'Your registration completed' in driver.page_source
